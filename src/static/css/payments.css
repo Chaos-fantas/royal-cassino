@@ -1,0 +1,225 @@
+/* Sistema de Pagamentos com Psicologia das Cores */
+
+/* Importar variáveis do arquivo principal */
+@import url("style.css");
+
+/* Container principal do sistema de pagamento */
+.payment-container {
+    background: var(--gradient-elegant);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 2px solid var(--trust-blue);
+    box-shadow: var(--shadow-blue);
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.payment-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--luxury-gold);
+}
+
+.payment-header h2 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    background: var(--gradient-trust);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.payment-header p {
+    color: var(--gray-300);
+    font-size: 1rem;
+}
+
+/* Seção de valores com cores atrativas */
+.amount-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 12px;
+    border: 1px solid var(--trust-blue);
+}
+
+.amount-section h3 {
+    color: var(--trust-blue);
+    margin-bottom: 1rem;
+}
+
+.amount-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.amount-option {
+    background: var(--black-light);
+    color: var(--white);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--gray-600);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    font-size: 1rem;
+}
+
+.amount-option:hover {
+    background: var(--trust-blue);
+    border-color: var(--trust-blue);
+    transform: translateY(-2px);
+}
+
+.amount-option.selected {
+    background: var(--trust-blue);
+    border-color: var(--trust-blue);
+    box-shadow: var(--shadow-blue);
+}
+
+/* Seção de método de pagamento */
+.payment-method-section {
+    margin-bottom: 2rem;
+}
+
+.payment-method-section h3 {
+    color: var(--trust-blue);
+    margin-bottom: 1rem;
+}
+
+.payment-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.payment-option {
+    background: var(--black-light);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--gray-600);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    text-align: center;
+    flex: 1 1 calc(50% - 1rem); /* Two columns on larger screens */
+    max-width: calc(50% - 1rem);
+}
+
+.payment-option:hover {
+    background: var(--trust-blue);
+    border-color: var(--trust-blue);
+    transform: translateY(-2px);
+}
+
+.payment-option.selected {
+    background: var(--trust-blue);
+    border-color: var(--trust-blue);
+    box-shadow: var(--shadow-blue);
+}
+
+.payment-option i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.payment-option p {
+    font-size: 0.9rem;
+}
+
+/* Informações de pagamento específicas */
+.payment-info {
+    background: var(--black-lighter);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--gray-700);
+    margin-top: 1.5rem;
+    display: none; /* Hidden by default */
+}
+
+.payment-info h4 {
+    color: var(--luxury-gold);
+    margin-bottom: 1rem;
+}
+
+.payment-info p {
+    color: var(--gray-300);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.payment-info .qr-code {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.payment-info .qr-code img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid var(--luxury-gold);
+}
+
+/* Botão de confirmar depósito */
+.confirm-deposit-btn {
+    background: var(--gradient-luck);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-green);
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.confirm-deposit-btn:hover {
+    background: var(--gradient-luxury);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Responsividade para o modal de pagamento */
+@media (max-width: 768px) {
+    .payment-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .payment-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .amount-option {
+        flex: 1 1 calc(33% - 1rem); /* Three columns on mobile */
+        max-width: calc(33% - 1rem);
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .payment-option {
+        flex: 1 1 calc(100% - 1rem); /* Single column on mobile */
+        max-width: calc(100% - 1rem);
+        padding: 0.8rem;
+    }
+
+    .payment-option i {
+        font-size: 1.8rem;
+    }
+
+    .confirm-deposit-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+

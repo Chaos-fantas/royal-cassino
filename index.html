@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Online - Experiência Premium</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/static/css/style.css">
+    <link rel="stylesheet" href="src/static/css/payments.css">
+    <link rel="stylesheet" href="src/static/css/mobile-enhancements.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="src/static/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Casino Online Premium - Jogos de cassino com as melhores chances de vitória">
+    <meta name="keywords" content="casino, online, jogos, roleta, blackjack, poker, slots">
+    <meta name="author" content="Casino Online">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Casino Online - Experiência Premium">
+    <meta property="og:description" content="Experimente nossos jogos emocionantes e ganhe prêmios incríveis!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seu-casino.com">
+    
+    <!-- Mobile optimization -->
+    <meta name="theme-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <!-- Header com design psicológico -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-dice"></i> Casino Online
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-home"></i> Início</a></li>
+                        <li><a href="#games"><i class="fas fa-gamepad"></i> Jogos</a></li>
+                        <li><a href="#deposit"><i class="fas fa-credit-card"></i> Depósito</a></li>
+                        <li><a href="#profile"><i class="fas fa-user"></i> Perfil</a></li>
+                    </ul>
+                </nav>
+                <div class="user-info">
+                    <div class="balance">
+                        <i class="fas fa-coins"></i> Saldo: R$ <span id="balance">0.00</span>
+                    </div>
+                    <button class="deposit-btn" onclick="showDepositModal()">
+                        <i class="fas fa-plus"></i> Depositar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section com cores atrativas -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1><i class="fas fa-crown"></i> Bem-vindo ao Casino Online</h1>
+                <p>Experimente nossos jogos emocionantes e ganhe prêmios incríveis! Uma experiência premium de cassino com as melhores chances de vitória.</p>
+                <button class="cta-button" onclick="scrollToGames()">
+                    <i class="fas fa-play"></i> Jogar Agora
+                </button>
+            </div>
+        </section>
+
+        <!-- Games Section com cores específicas -->
+        <section id="games" class="games-section">
+            <div class="container">
+                <h2 style="text-align: center; font-family: var(--font-primary); font-size: 2.5rem; margin-bottom: 3rem; background: var(--gradient-luxury); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    <i class="fas fa-star"></i> Nossos Jogos
+                </h2>
+                <div class="games-grid">
+                    <div class="game-card roulette" onclick="openGame('roulette')">
+                        <div class="game-icon">
+                            <i class="fas fa-circle-notch"></i>
+                        </div>
+                        <h3><i class="fas fa-fire"></i> Roleta</h3>
+                        <p>Teste sua sorte na roleta clássica</p>
+                        <div class="game-stats">
+                            <span class="win-rate">Taxa de Vitória: 47.4%</span>
+                        </div>
+                    </div>
+                    <div class="game-card blackjack" onclick="openGame('blackjack')">
+                        <div class="game-icon">
+                            <i class="fas fa-spade"></i>
+                        </div>
+                        <h3><i class="fas fa-leaf"></i> Blackjack</h3>
+                        <p>Chegue o mais próximo de 21</p>
+                        <div class="game-stats">
+                            <span class="win-rate">Taxa de Vitória: 49.5%</span>
+                        </div>
+                    </div>
+                    <div class="game-card slots" onclick="openGame('slots')">
+                        <div class="game-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3><i class="fas fa-gem"></i> Caça-níqueis</h3>
+                        <p>Gire os rolos e ganhe prêmios</p>
+                        <div class="game-stats">
+                            <span class="win-rate">Jackpot: R$ 5.000,00</span>
+                        </div>
+                    </div>
+                    <div class="game-card poker" onclick="openGame('poker')">
+                        <div class="game-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3><i class="fas fa-shield-alt"></i> Poker</h3>
+                        <p>Mostre suas habilidades no poker</p>
+                        <div class="game-stats">
+                            <span class="win-rate">Texas Hold'em</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Container -->
+        <section id="game-container" style="display: none; padding: 2rem 0; background: var(--gradient-elegant);">
+            <div class="container">
+                <div class="game-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 id="game-title" style="color: var(--luxury-gold); font-family: var(--font-primary);">Jogo</h2>
+                    <button onclick="closeGame()" class="btn-secondary">
+                        <i class="fas fa-times"></i> Fechar
+                    </button>
+                </div>
+                <div id="game-content">
+                    <!-- Conteúdo do jogo será carregado aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Promoções -->
+        <section class="promotions" style="padding: 4rem 0; background: radial-gradient(circle at center, rgba(220, 38, 38, 0.1) 0%, transparent 70%);">
+            <div class="container">
+                <h2 style="text-align: center; font-family: var(--font-primary); font-size: 2.5rem; margin-bottom: 2rem; color: var(--primary-red);">
+                    <i class="fas fa-gift"></i> Promoções Especiais
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: var(--gradient-elegant); padding: 2rem; border-radius: 15px; border: 2px solid var(--primary-red); text-align: center;">
+                        <h3 style="color: var(--primary-red); margin-bottom: 1rem;"><i class="fas fa-percentage"></i> Bônus de Boas-vindas</h3>
+                        <p style="color: var(--gray-300); margin-bottom: 1rem;">100% do primeiro depósito até R$ 500</p>
+                        <button class="btn-primary" onclick="showDepositModal()">Aproveitar Agora</button>
+                    </div>
+                    <div style="background: var(--gradient-elegant); padding: 2rem; border-radius: 15px; border: 2px solid var(--luxury-gold); text-align: center;">
+                        <h3 style="color: var(--luxury-gold); margin-bottom: 1rem;"><i class="fas fa-crown"></i> VIP Club</h3>
+                        <p style="color: var(--gray-300); margin-bottom: 1rem;">Cashback diário e promoções exclusivas</p>
+                        <button class="btn-primary">Saiba Mais</button>
+                    </div>
+                    <div style="background: var(--gradient-elegant); padding: 2rem; border-radius: 15px; border: 2px solid var(--lucky-green); text-align: center;">
+                        <h3 style="color: var(--lucky-green); margin-bottom: 1rem;"><i class="fas fa-clock"></i> Happy Hour</h3>
+                        <p style="color: var(--gray-300); margin-bottom: 1rem;">Multiplicador 2x das 20h às 22h</p>
+                        <button class="btn-primary">Participar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Depósito com cores de confiança -->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-credit-card"></i> Fazer Depósito
+                <button class="btn-secondary" onclick="hideDepositModal()" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem; border-radius: 50%; width: 40px; height: 40px;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="depositForm">
+                <div class="form-group">
+                    <label for="depositAmount"><i class="fas fa-dollar-sign"></i> Valor do Depósito (R$)</label>
+                    <input type="number" id="depositAmount" name="amount" min="10" max="10000" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod"><i class="fas fa-payment"></i> Método de Pagamento</label>
+                    <select id="paymentMethod" name="method" required>
+                        <option value="">Selecione um método</option>
+                        <option value="pix">PIX</option>
+                        <option value="credit">Cartão de Crédito</option>
+                        <option value="debit">Cartão de Débito</option>
+                    </select>
+                </div>
+                
+                <!-- Campos adicionais para cartão (ocultos por padrão) -->
+                <div id="cardFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="cardNumber"><i class="fas fa-credit-card"></i> Número do Cartão</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="cardExpiry"><i class="fas fa-calendar"></i> Validade</label>
+                            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="cardCvv"><i class="fas fa-lock"></i> CVV</label>
+                            <input type="text" id="cardCvv" name="cardCvv" placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardName"><i class="fas fa-user"></i> Nome no Cartão</label>
+                        <input type="text" id="cardName" name="cardName" placeholder="Nome como está no cartão">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-check"></i> Confirmar Depósito
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 3000;"></div>
+
+    <!-- Scripts -->
+    <script src="src/static/js/casino-house-edge.js"></script>
+    <script src="src/static/js/anon.js"></script>
+    <script src="src/static/js/payments.js"></script>
+    <script src="src/static/js/game-validation.js"></script>
+    <script src="src/static/js/main.js"></script>
+    <script src="src/static/js/games/roulette.js"></script>
+    <script src="src/static/js/games/blackjack.js"></script>
+    <script src="src/static/js/games/slots.js"></script>
+    <script src="src/static/js/games/poker.js"></script>
+
+    <script>
+        // Função para rolar suavemente até os jogos
+        function scrollToGames() {
+            document.getElementById('games').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Função para abrir jogos
+        function openGame(gameType) {
+            const gameContainer = document.getElementById('game-container');
+            const gameTitle = document.getElementById('game-title');
+            const gameContent = document.getElementById('game-content');
+            
+            if (!gameContainer || !gameTitle || !gameContent) {
+                console.error('Game container elements not found');
+                return;
+            }
+            
+            // Set game title
+            const gameTitles = {
+                'roulette': 'Roleta',
+                'blackjack': 'Blackjack',
+                'slots': 'Caça-níqueis',
+                'poker': 'Poker'
+            };
+            
+            gameTitle.textContent = gameTitles[gameType] || 'Jogo';
+            
+            // Clear previous game content
+            gameContent.innerHTML = '';
+            
+            // Load game content
+            loadGameContent(gameType, gameContent);
+            
+            // Show game container
+            gameContainer.style.display = 'block';
+            gameContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Função para carregar conteúdo do jogo
+        function loadGameContent(gameType, container) {
+            switch(gameType) {
+                case 'roulette':
+                    if (typeof initializeRoulette === 'function') {
+                        initializeRoulette(container);
+                    } else {
+                        container.innerHTML = '<p>Carregando jogo da roleta...</p>';
+                    }
+                    break;
+                case 'blackjack':
+                    if (typeof initializeBlackjack === 'function') {
+                        initializeBlackjack(container);
+                    } else {
+                        container.innerHTML = '<p>Carregando jogo de blackjack...</p>';
+                    }
+                    break;
+                case 'slots':
+                    if (typeof initializeSlots === 'function') {
+                        initializeSlots(container);
+                    } else {
+                        container.innerHTML = '<p>Carregando caça-níqueis...</p>';
+                    }
+                    break;
+                case 'poker':
+                    if (typeof initializePoker === 'function') {
+                        initializePoker(container);
+                    } else {
+                        container.innerHTML = '<p>Carregando jogo de poker...</p>';
+                    }
+                    break;
+                default:
+                    container.innerHTML = '<p>Jogo não encontrado.</p>';
+            }
+        }
+
+        // Função para fechar jogo
+        function closeGame() {
+            const gameContainer = document.getElementById('game-container');
+            if (gameContainer) {
+                gameContainer.style.display = 'none';
+            }
+        }
+
+        // Função para mostrar modal de depósito
+        function showDepositModal() {
+            const modal = document.getElementById('depositModal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        // Função para esconder modal de depósito
+        function hideDepositModal() {
+            const modal = document.getElementById('depositModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Função para mostrar notificações
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notification-container');
+            if (!container) return;
+
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.style.cssText = `
+                background: ${type === 'error' ? 'var(--primary-red)' : type === 'success' ? 'var(--lucky-green)' : 'var(--trust-blue)'};
+                color: white;
+                padding: 1rem;
+                margin-bottom: 0.5rem;
+                border-radius: 8px;
+                box-shadow: var(--shadow-elegant);
+                animation: slideIn 0.3s ease-out;
+                max-width: 300px;
+                word-wrap: break-word;
+            `;
+            notification.textContent = message;
+
+            container.appendChild(notification);
+
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease-in';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+
+        // Efeitos visuais especiais
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adicionar efeito de pulso ao saldo quando atualizado
+            const balanceElement = document.getElementById('balance');
+            if (balanceElement) {
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                            balanceElement.parentElement.classList.add('pulse-gold');
+                            setTimeout(() => {
+                                balanceElement.parentElement.classList.remove('pulse-gold');
+                            }, 2000);
+                        }
+                    });
+                });
+                observer.observe(balanceElement, { childList: true, characterData: true, subtree: true });
+            }
+
+            // Efeito de hover nos cards de jogos
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Animação de entrada para os elementos
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Aplicar animação aos cards de jogos
+            gameCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Configurar campos de cartão
+            const paymentMethodSelect = document.getElementById('paymentMethod');
+            const cardFields = document.getElementById('cardFields');
+            
+            if (paymentMethodSelect && cardFields) {
+                paymentMethodSelect.addEventListener('change', function() {
+                    if (this.value === 'credit' || this.value === 'debit') {
+                        cardFields.style.display = 'block';
+                    } else {
+                        cardFields.style.display = 'none';
+                    }
+                });
+            }
+
+            // Formatação de campos de cartão
+            const cardNumberInput = document.getElementById('cardNumber');
+            const cardExpiryInput = document.getElementById('cardExpiry');
+            const cardCvvInput = document.getElementById('cardCvv');
+
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function() {
+                    let value = this.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    this.value = formattedValue;
+                });
+            }
+
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    this.value = value;
+                });
+            }
+
+            if (cardCvvInput) {
+                cardCvvInput.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+            }
+
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('depositModal');
+                if (event.target === modal) {
+                    hideDepositModal();
+                }
+            });
+
+            // Fechar modal com ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    hideDepositModal();
+                    closeGame();
+                }
+            });
+        });
+
+        // Adicionar estilos para animações
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+
